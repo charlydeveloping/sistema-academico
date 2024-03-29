@@ -3,8 +3,8 @@
 const { QueryTypes } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  const materia = sequelize.define(
-    "materia",
+  const usuario = sequelize.define(
+    "usuario",
     {
       id: {
         allowNull: false,
@@ -16,34 +16,34 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      semestre: {
+      apellido: {
         allowNull: false,
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(50),
       },
-      fk_profesor: {
+      correo: {
+        allowNull: false,
+        type: DataTypes.STRING(100),
+      },
+      password: {
+        allowNull: false,
+        type: DataTypes.STRING(100),
+      },
+      fk_estudiante: {
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
-          model: "profesores",
-          key: "id",
-        },
-      },
-      fk_carrera: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: "carreras",
+          model: "estudiantes",
           key: "id",
         },
       },
     },
     {
       timestamps: false,
-      tableName: "materias",
+      tableName: "usuarios",
     }
   );
 
-  materia.getMateriaes = async (params) => {
+  usuario.getusuarios = async (params) => {
     
     const query = ``;
     return await sequelize.query(query, {
@@ -51,13 +51,12 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  materia.associate = function (models) {
-    // materia.hasMany(models.materias, {
+  usuario.associate = function (models) {
+    // usuario.hasMany(models.materias, {
     //   foreignKey: "fk_materia",
     //   as: "materias",
     // });
   };
 
-  return materia;
+  return usuario;
 };
-

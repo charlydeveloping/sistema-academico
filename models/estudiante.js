@@ -16,6 +16,22 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING(50),
       },
+      apellido: {
+        allowNull: false,
+        type: DataTypes.STRING(50),
+      },
+      ci: {
+        allowNull: false,
+        type: DataTypes.STRING(15),
+      },
+      fk_carrera: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: "carreras",
+          key: "id",
+        },
+      },
     },
     {
       timestamps: false,
